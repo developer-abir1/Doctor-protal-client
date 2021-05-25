@@ -1,0 +1,18 @@
+.info-card{
+    padding:0 5px;
+}
+
+.info-primary{
+    background-image:linear-gradient(#17D2BE, #4FDCE8) ;
+}
+.info-dark{
+    background-color: #3B4256;
+}
+.info-icon{
+    font-size:3em;
+}
+
+.info-container{
+    height:120px;
+    padding:40px;
+}
