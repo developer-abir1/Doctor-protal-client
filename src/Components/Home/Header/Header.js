@@ -6,7 +6,7 @@ import BusinessInfo from '../BusinessInfo/BusinessInfo';
 
 const Header = () => {
     return (
-        <div class="header-container">
+        <div class="header-container ">
          <Nevbar></Nevbar>
          <HeaderMain></HeaderMain>
          <BusinessInfo></BusinessInfo>
