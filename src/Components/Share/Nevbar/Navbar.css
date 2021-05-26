@@ -1,0 +1,9 @@
+nav ul> li> a:hover{
+   border: 1px solid rgba(128, 128, 128, 0.212);
+   border-bottom: 1px solid #4FDCE8;
+   
+}
+nav ul> li> a{
+   color: rgb(148, 148, 148) !important;
+   font-weight: 600;
+}
