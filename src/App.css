@@ -4,8 +4,14 @@
     padding: 10px 35px;
     color:white;
     font-weight: 700;
+    border-radius: 3px;
     border-color: transparent;
 
+}
+.btn-brand:hover{
+    background-image:linear-gradient(rgba(255, 255, 255, 0.89),rgba(255, 255, 255, 0.89));
+    color: #4FDCE8;
+    border: 1px solid black;
 }
 .text-brand{
     color:#4FDCE8;

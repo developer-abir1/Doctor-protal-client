@@ -49,6 +49,7 @@ const AppoinmentFrom = ({
       >
         <div className="modalFrom">
           
+          <button onClick={closeModal} className="btn-close float-end"></button>
           <h2 className="text-center text-brand text-uppercase">
             {apponimentOn}
           </h2>
