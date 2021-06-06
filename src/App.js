@@ -9,29 +9,52 @@ import {
 import Home from './Components/Home/Home/Home';
 import Appointment from './Components/Appointment/Appointment/Appointment';
 import Login from './Components/Login/Login/Login';
+import { createContext, useState } from 'react';
+import PrivetRoute from './Components/Login/PrivetRoute/PrivetRoute';
+import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
+import AllPatient from './Components/AllPatients/AllPatient';
+import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
+
+export const UserContext = createContext()
 
 
 function App() {
+
+  const [loggedIndUser, setLoggedIndUser] = useState({});
+
+
+
+
   return (
-    <Router>
-     <Switch>
-       <Route exact  path="/">
-      <Home></Home>
-       </Route>
-       <Route path="/home">
-         <Home></Home>
-       </Route>
-       <Route path="/appointment">
-         <Appointment></Appointment>
-       </Route>
-       <Route path="/login">
-         <Login></Login>
-       </Route>
-       <Route>
-         
-       </Route>
-     </Switch>
-    </Router>
+    <UserContext.Provider value={[loggedIndUser, setLoggedIndUser]}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+
+            < Home ></Home>
+          </Route>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
+          <PrivetRoute path="/appointment">
+            <Appointment></Appointment>
+          </PrivetRoute>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <PrivetRoute path="/doctor/dashboard">
+            <Dashboard></Dashboard>
+          </PrivetRoute>
+          <PrivetRoute path="/doctor/patients">
+            <AllPatient></AllPatient>
+          </PrivetRoute>
+          <PrivetRoute path="/doctor/addDoctor">
+            <AddDoctor></AddDoctor>
+          </PrivetRoute>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
+
   );
 }
 

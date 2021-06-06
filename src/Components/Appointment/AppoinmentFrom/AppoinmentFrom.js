@@ -32,10 +32,26 @@ const AppoinmentFrom = ({
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    
-    console.log(data);
-    closeModal()
-    
+
+    data.service = apponimentOn;
+    data.date = date;
+    data.creact = new Date();
+     
+    fetch('http://localhost:4500/addAppointment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(success => {
+        if (success) {
+          closeModal();
+          alert('Thanks for creacting  successfully')
+      }
+    } )
+
+   
+
   };
 
 
@@ -48,7 +64,7 @@ const AppoinmentFrom = ({
         contentLabel="Example Modal"
       >
         <div className="modalFrom">
-          
+
           <button onClick={closeModal} className="btn-close float-end"></button>
           <h2 className="text-center text-brand text-uppercase">
             {apponimentOn}

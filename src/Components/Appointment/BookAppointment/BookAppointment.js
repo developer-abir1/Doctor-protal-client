@@ -42,7 +42,6 @@ const bookingData = [
 
 
 
-
 const BookAppointment = ({ date }) => {
     return (
         <section className="bookingAppointment container mt-5">

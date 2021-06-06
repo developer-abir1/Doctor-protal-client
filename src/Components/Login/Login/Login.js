@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './login.css'
 import loginBg from '../../../images/login.png'
 import facebook from '../../../images/facebook.png'
@@ -11,17 +11,16 @@ import {
   faGoogle,
   faGooglePlusG
 } from '@fortawesome/free-brands-svg-icons'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
 import { useState } from 'react'
-import firebaseConfig from './firebase.Config'
+import { UserContext } from '../../../App'
+import { useHistory, useLocation } from 'react-router'
+import { handleCreactUser, handleGoogleSingIn, handleSingInUsers, handleSingOut, initializeLoginFrameWorker, storeAuthToken } from './LoginManger'
 
 const Login = () => {
   document.title = 'Login '
 
   const [newUser, setNewUser] = useState(false)
-  const [loggedIndUser, setLoggedInUser] = useState({
+  const [user, setUser] = useState({
     isSingIn: false,
     name: '',
     photo: '',
@@ -30,66 +29,28 @@ const Login = () => {
     success: false,
     newUser: false
   })
+ 
+  const [loggedIndUser, setLoggedIndUser] = useContext(UserContext);
+  
+  const history = useHistory();
+  const location = useLocation();
 
-  const provider = new firebase.auth.GoogleAuthProvider()
+  let { from } = location.state || { from: { pathname: "/" } };
 
-  if (firebase.apps.length === 0) {
-    firebase.initializeApp(firebaseConfig)
-  }
+  initializeLoginFrameWorker();
 
-  const handleSingIn = () => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        var credential = result.credential
-        var token = credential.accessToken
-
-        const { displayName, photoURL, email } = result.user
-        const user = {
-          name: displayName,
-          photo: photoURL,
-          email: email
-        }
-        setLoggedInUser(user)
-
-        console.log(user)
-      })
-      .catch(error => {
-        var errorCode = error.code
-        var errorMessage = error.message
-        // The email of the user's account used.
-        var email = error.email
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential
-        // ...
-      })
-  }
-
-  const handleSingOut = () => {
-    firebase
-      .auth()
-      .signOut()
+  const googleSingIn = () => {
+    handleGoogleSingIn()
       .then(res => {
-        const user = {
-          isSingIn: true,
-          name: '',
-          photo: '',
-          email: '',
-          password: '',
-
-
-        }
-        setLoggedInUser(user)
-      })
-      .catch(error => {
-        // An error happened.
-      })
+        setLoggedIndUser(res)
+        setUser(res)
+      
+        history.replace(from);
+    })
   }
 
-  //   submite From
 
-
+  
 
   const handleBlur = (e) => {
 
@@ -107,7 +68,8 @@ const Login = () => {
     if (isFildValid) {
       const newUserInfo = { ...loggedIndUser }
       newUserInfo[e.target.name] = e.target.value;
-      setLoggedInUser(newUserInfo)
+      setUser(newUserInfo)
+      setLoggedIndUser(newUserInfo)
     }
 
 
@@ -115,49 +77,31 @@ const Login = () => {
 
   const handleSubmit = (e) => {
 
-    if (loggedIndUser.email && loggedIndUser.password) {
-      firebase.auth().createUserWithEmailAndPassword(loggedIndUser.email, loggedIndUser.password)
-        .then(result => {
+    if (user.email && user.password) {
+      handleCreactUser( user.email, user.password)
+      .then(res => {
+        setUser(res)
+        setLoggedIndUser(res)
+        history.replace(from);
+        
+      })
+    };
 
-          const newUserInfo = { ...loggedIndUser }
-          newUserInfo.error = ''
-          newUserInfo.success = true
-          setLoggedInUser(newUserInfo)
-
-        })
-        .catch((error) => {
-          const newUserInfo = { ...loggedIndUser }
-          newUserInfo.error = error.message
-          newUserInfo.success = false
-          setLoggedInUser(newUserInfo)
-          // ..
-        });
-
-    }
-
-    if (!newUser && loggedIndUser.email && loggedIndUser.password) {
-      firebase.auth().signInWithEmailAndPassword(loggedIndUser.email, loggedIndUser.password)
-        .then(res => {
-          // Signed in
-          const newUserInfo = { ...loggedIndUser }
-          newUserInfo.error = ''
-          newUserInfo.success = true
-          setLoggedInUser(newUserInfo)
-          // ...
-        })
-        .catch((error) => {
-          const newUserInfo = { ...loggedIndUser }
-          newUserInfo.error = error.message
-          newUserInfo.success = false
-          setLoggedInUser(newUserInfo)
-        });
+    if (!newUser && user.email && user.password) {  
+      handleSingInUsers(user.email, user.password)
+      .then(res => {
+        setUser(res)
+        setLoggedIndUser(res)
+       
+        history.replace(from);
+    })
 
     }
-
-
-
     e.preventDefault();
   }
+
+  
+
 
   return (
     <div className='loginFrom container'>
@@ -173,22 +117,13 @@ const Login = () => {
                 type='text'
                 name="name"
                 className='form-control'
-                placeholder='First name'
+                placeholder='Enter your Name'
                 onBlur={handleBlur}
                 required
               />
             </div>}
+            
 
-            {newUser && <div className='form-group'>
-              <input
-                type='text'
-                name="lastName"
-                className='form-control'
-                placeholder='last name'
-                onBlur={handleBlur}
-                required
-              />
-            </div>}
 
             <div className='form-group'>
               <input
@@ -217,9 +152,9 @@ const Login = () => {
               {newUser ? " Creact an Account" : " Login"}
             </button>
             <p className='forgot-password text-right text-center mt-3'>
-              {newUser ? 'Do You Have Already account' : " Creact an account "}
+              {newUser ? ' Already account' : "Don't have an account?  "}
               <a href='#' className='ms-auto ' style={{ textDecoration: 'none', color: 'red' }} onClick={() => setNewUser(!newUser)}>
-                {newUser ? ' Login ?' : "  Regster ?"}
+                {newUser ? ' Login ?' : " Sing up"}
               </a>
             </p>
 
@@ -228,26 +163,20 @@ const Login = () => {
 
           <p style={{ color: "red" }} className="text-center"> {loggedIndUser.error}</p>
           {loggedIndUser.success && <p style={{ color: "green" }} className="text-center">User {newUser ? "Create" : "login"} successfully </p>}
-          <div className='form-group  container'>
+          <div className='form-group  '>
             <p className='loginWith'> OR </p>
-            {loggedIndUser.isSingIn ? (
-              <button className='login-provider ' onClick={handleSingIn}>
-                {' '}
-                Login with Google <FontAwesomeIcon icon={faGoogle} />{' '}
-              </button>
-            ) : (
-              <button onClick={handleSingOut}>Sing Out</button>
-            )}
             <br />
-            <button className='login-provider'>
-              Login with Facebook <FontAwesomeIcon icon={faFacebook} />{' '}
-            </button>
+            <br />
+             <button className='login-provider w-100' onClick={googleSingIn}>Login with Google <img src={google} alt="" width="40px" srcset="" /></button>
+
+            
           </div>
         </div>
         <div className='col-md-6 mt-5 pt-5'>
           <img src={loginBg} className='img-fluid' alt='' srcset='' />
         </div>
       </div>
+     
     </div>
   )
 }

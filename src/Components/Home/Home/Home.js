@@ -1,4 +1,6 @@
 import React from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../../App';
 import Footer from '../../Share/Footer/Footer';
 import Blogs from '../Blogs/Blogs';
 import Contact from '../Contact/Contact';
@@ -10,9 +12,12 @@ import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
-    document.title = 'Docotr Protal'
+    document.title = 'Docotr Protal';
+
+    const [loggedIndUser, setLoggedIndUser] = useContext(UserContext)
     return (
         <div>
+          
             <Header></Header>
             <Services></Services>
             <FeaturedService></FeaturedService>
@@ -22,6 +27,7 @@ const Home = () => {
             <Doctors></Doctors>
             <Contact></Contact>
             <Footer></Footer>
+          
         </div>
     );
 };

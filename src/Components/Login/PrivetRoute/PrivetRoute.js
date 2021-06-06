@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { UserContext } from '../../../App';
 
-const PrivetRoute = ({ component: Component, ...rest }) => {
+const PrivetRoute = ({ children, ...rest }) => {
+	const [loggedIndUser, setLoggedIndUser] =useContext(UserContext)
+
+	
 	return (
 		<Route
 			{...rest}
-			render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/signin" />)}
+			render={({ location }) =>
+				loggedIndUser.email ? (
+					children
+				) : (
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { from: location }
+						}}
+					/>
+				)
+			}
 		/>
+
 	);
 };
 
