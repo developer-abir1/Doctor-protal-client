@@ -37,7 +37,7 @@ const AppoinmentFrom = ({
     data.date = date;
     data.creact = new Date();
      
-    fetch('http://localhost:4500/addAppointment', {
+    fetch('https://whispering-sands-28148.herokuapp.com/addAppointment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
