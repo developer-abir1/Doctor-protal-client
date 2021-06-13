@@ -48,7 +48,8 @@ const AddDoctor = () => {
             })
         e.preventDefault();
     }
-
+      
+  
 
 
     return (

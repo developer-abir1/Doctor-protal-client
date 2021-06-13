@@ -37,29 +37,29 @@ const Sidebar = () => {
                         <FontAwesomeIcon icon={faGripHorizontal} /> <span>Dashboard</span>
                     </Link>
                 </li>
-               {isDoctors && <div>
-                <li>
-                    <Link to="/doctor/appointment" className="text-white">
+               {isDoctors && <div >
+                <li >
+                    <Link to="/doctor/appointment"  style={{textDecoration: 'none'}} className="text-white">
                         <FontAwesomeIcon icon={faCalendar} /> <span>Appointment</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/doctor/patients" className="text-white">
+                    <Link to="/doctor/patients" style={{textDecoration: 'none'}} className="text-white">
                         <FontAwesomeIcon icon={faUsers} /> <span>Patients</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/doctor/prescriptions" className="text-white">
+                    <Link to="/doctor/prescriptions" style={{textDecoration: 'none'}} className="text-white">
                         <FontAwesomeIcon icon={faFileAlt} /> <span>Prescriptions</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/doctor/addDoctor" className="text-white" >
+                    <Link to="/doctor/addDoctor" style={{textDecoration: 'none'}} className="text-white" >
                         <FontAwesomeIcon icon={faUserPlus} /> <span>Add Doctor</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/doctor/setting" className="text-white" >
+                    <Link to="/doctor/setting" style={{textDecoration: 'none'}} className="text-white" >
                         <FontAwesomeIcon icon={faCog} /> <span>Setting</span>
                     </Link>
                 </li>

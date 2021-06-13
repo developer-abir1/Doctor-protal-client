@@ -12,7 +12,7 @@ const HeaderMain = () => {
          <Link to="/appointment" style={{textDecoration:'none'}}>  <button className="btn-brand text-uppercase m-3">Get Appointment</button></Link>  
             </div>
             <div className="col-md-6">
-                <img src={chair} alt="" className="img-fluid" />
+            <img src={chair} className="img-fluid" alt="" srcset="" />
             </div>
         </main>
     );
