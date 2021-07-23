@@ -14,6 +14,7 @@ import PrivetRoute from './Components/Login/PrivetRoute/PrivetRoute';
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 import AllPatient from './Components/AllPatients/AllPatient';
 import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
+import DashboardAppoinments from './Components/Dashboard/DashboardAppointments/DashboardAppoinments';
 
 export const UserContext = createContext()
 
@@ -51,6 +52,10 @@ function App() {
           <PrivetRoute path="/doctor/addDoctor">
             <AddDoctor></AddDoctor>
           </PrivetRoute>
+          <PrivetRoute path="/doctor/appointment">
+          <DashboardAppoinments></DashboardAppoinments>
+          </PrivetRoute>
+
         </Switch>
       </Router>
     </UserContext.Provider>

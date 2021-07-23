@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import chair from '../../../images/chair.png'
+import chair from '../../../images/little-boy-patient-dentist.jpg'
+
+import 'aos/dist/aos.css';
+
+
 
 const HeaderMain = () => {
+
     return (
-        <main style={{height:"600px"}} className="row d-flex align-items-center ">
-            <div className="col-md-4 offset-md-1 ">
-            <h1 className="text-font m-3">Your New Smile <br /> starts here</h1>
-            <p className="text-secondary m-3">Lorem ipsum dolor sit  Delectus nesciunt sunt rerum sequi perspiciatis officia totam, laudantium harum itaque, voluptates tenetur. Enim maiores quidem in.</p>
-             
-         <Link to="/appointment" style={{textDecoration:'none'}}>  <button className="btn-brand text-uppercase m-3">Get Appointment</button></Link>  
+        <main style={{ height: '600px' }} className="row d-flex align-items-center">
+            <div className="col-md-4 col-sm-6 col-12 offset-md-1">
+                <h1 style={{ color: '#3A4256' }}>Your New Smile <br /> Starts Here</h1>
+                <p className="text-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore eveniet necessitatibus et iusto corrupti minima.</p>
+                <Link to="/appointment" className="btn btn-brand">GET APPOINTMENT</Link>
             </div>
-            <div className="col-md-6">
-            <img src={chair} className="img-fluid" alt="" srcset="" />
+            <div className="col-md-6 col-sm-6 col-12">
+                <img src={chair} alt="" className="img-fluid" />
             </div>
         </main>
     );

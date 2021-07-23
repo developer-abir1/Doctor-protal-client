@@ -49,7 +49,7 @@ const BookAppointment = ({ date }) => {
             <div className="row  ">
                 {
 
-                    bookingData.map(booking => <BookingCard booking={booking} key={booking.id} date={date}></BookingCard>)
+                    bookingData.map(booking => <BookingCard booking={booking} key={booking.id} date={date} ></BookingCard>)
 
                 }
             </div>

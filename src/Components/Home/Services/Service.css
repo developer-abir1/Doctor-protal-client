@@ -1,0 +1,10 @@
+.services-container{
+   
+  
+}
+.service-card{
+    box-shadow: 5px 5px 10px gray;
+    margin: 10px ;
+    padding:10px;
+    border-radius:15px;
+}

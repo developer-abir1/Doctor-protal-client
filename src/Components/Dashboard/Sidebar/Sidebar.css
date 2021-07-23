@@ -6,8 +6,8 @@
     margin-bottom: 2em;
 }
 .sidebar li:hover span{
-    display: inline-block;
-    transform: translate(5px);
+   cursor: pointer;
+   border-bottom: 1px solid #0c2923;
 }
 .sidebar ul> li> a{
     text-decoration: none;
@@ -16,6 +16,5 @@
     margin-right: 5px;
 }
 .logOut:hover{
-    display: inline-block;
-    transform: translate(5px);
+   
 }

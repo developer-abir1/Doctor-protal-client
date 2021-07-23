@@ -2,8 +2,8 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-import firebaseConfig from './firebase.Config'
 
+import firebaseConfig from './firebase.Config'
 
 
 export const initializeLoginFrameWorker = () => {
@@ -11,6 +11,8 @@ export const initializeLoginFrameWorker = () => {
         firebase.initializeApp(firebaseConfig)
     }
 }
+
+
 
 
 export const handleGoogleSingIn = () => {
@@ -30,6 +32,7 @@ export const handleGoogleSingIn = () => {
                 success: true
             }
             return user
+
         })
         .catch(error => {
             var errorCode = error.code
@@ -42,7 +45,15 @@ export const handleGoogleSingIn = () => {
         })
 }
 
-
+export const storeAuthToken = () => {
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+        .then(function (idToken) {
+            sessionStorage.setItem('token', idToken);
+           
+        }).catch(function (error) {
+            // Handle error
+        });
+}
 
 export const handleCreactUser = (name, email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)

@@ -4,7 +4,7 @@ const Testimonial = (props) => {
   const { quote, name, from, img } = props.testimonial;
   return (
     <div className="col-md-4 d-flex justify-content-center py-3 p-3">
-      <div className=" card shadow-sm" style={{width:'18rem'}}>
+      <div className=" card shadow-sm" style={{ width: '18rem' }}>
         <div className="card-body">
           <p className="card-text ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero deserunt aspernatur illum ullam quasi repudiandae nam officia tempora nesciunt et quod quae, voluptatem perspiciatis exercitationem officiis repellat consequuntur vel accusantium.</p>
         </div>

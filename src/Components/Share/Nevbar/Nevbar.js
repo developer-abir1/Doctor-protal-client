@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../../App";
 import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faStethoscope, faUser } from '@fortawesome/free-solid-svg-icons'
 import { handleSingOut } from "../../Login/Login/LoginManger";
 import { Link } from "react-router-dom";
 
@@ -21,13 +21,17 @@ const Nevbar = () => {
 
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light container ">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+    <div className="navSection  container-fluid" id="colorItem">
+
+      <nav className="navbar navbar-expand-lg navbar-light  py-3" >
+
+        <Link to="/" style={{ textDecoration: "none" }} >
+          <h4 className=" text-brands" >  <span className="text-logo"><FontAwesomeIcon icon={faStethoscope} />Dental</span>Care</h4>
+
+
+        </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -35,73 +39,54 @@ const Nevbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto  m-3">
-            <li class="nav-item ms-5">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Home
+        <div className="collapse navbar-collapse  " id="navbarNav">
+          <ul className="navbar-nav ms-auto  text-uppercase  ">
+            <li className="nav-item ms-5  ">
+              <Link to="/" style={{ textDecoration: "none", }} className="navHover" > <a className="nav-link active text-gray navhovers" aria-current="page" href="#">
+                Home
               </a>
               </Link>
             </li>
-         
-            <li class="nav-item ms-5">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/dashboard">
-                <a class="nav-link " aria-current="page" href="#">
-                  About
+            <li className="nav-item ms-5 ">
+              <Link to="/" style={{ textDecoration: "none" }} className="navHover" > <a className="nav-link  text-gray navhovers" href="#">
+                About
               </a>
               </Link>
             </li>
-            <li class="nav-item ms-5">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/dashboard">
-                <a class="nav-link  " aria-current="page" href="#">
-                  Dental Services
+            <li className="nav-item ms-5 ">
+              <Link to="/" style={{ textDecoration: "none" }} className="navHover"> <a className="nav-link text-gray navhovers" href="#">
+                Service
               </a>
               </Link>
             </li>
-          
-            <li class="nav-item ms-5 ">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/dashboard">
-                <a class="nav-link  " aria-current="page" href="#">
-                  Reviews
+            <li className="nav-item ms-5 ">
+              <Link to="/" style={{ textDecoration: "none" }} className="navHover"> <a className="nav-link text-white navhovers" href="#">
+                Appoinment
               </a>
               </Link>
             </li>
-            <li class="nav-item ms-5 ">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/dashboard">  <a class="nav-link  " aria-current="page" href="#">
-                Blogs
-              </a>
-              </Link>
-            </li>
-            <li class="nav-item ms-5 ">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/dashboard">  <a class="nav-link  " aria-current="page" href="#">
-                Contact Us
-              </a>
-              </Link>
-            </li>
-            <li class="nav-item ms-5 ">
-              <Link className="navText " style={{ textDecoration: 'none' }} to="/doctor/dashboard">  <a class="nav-link  " aria-current="page" href="#">
+            <li className="nav-item ms-5 ">
+              <Link to="/" style={{ textDecoration: "none" }} className="navHover"> <a className="nav-link text-white navhovers" href="#">
                 Dashboard
               </a>
               </Link>
             </li>
-
-            <li class="nav-item dropdown ms-5">
-              <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src={loggedIndUser.photo} style={{ height: '30px', borderRadius: '20px' }} alt="" />
+            <li className="nav-item ms-5 ">
+              <Link to="/" style={{ textDecoration: "none" }} className="navHover">   <a className="nav-link text-white navhovers" href="#">
+                Contact us
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">{loggedIndUser.name}</a></li>
-                <li><a onClick={singOut} class="dropdown-item" href="#">Sing Out</a></li>
-
-              </ul>
+              </Link>
             </li>
+
+
           </ul>
         </div>
-      </div>
-    </nav>
+
+      </nav>
+    </div>
+
   );
 };
 

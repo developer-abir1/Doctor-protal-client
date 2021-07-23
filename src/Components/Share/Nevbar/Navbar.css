@@ -1,11 +1,38 @@
-.navText a:hover {
-  
-   border-bottom: 1px solid #4FDCE8;
+
+nav ul> li> a{
+   font-weight: 500;
+   color:black
+}
+.text-logo{
+ 
+ font-weight: 700;
+ color:#12aa33;
 
 }
+.navhovers{
 
-.navText a {
-   color: rgb(148, 148, 148) !important;
-   font-size: 15px;
-   text-decoration: none;
+ position: relative;
+}
+
+.navhovers::after{
+content:'';
+position:absolute ;
+left:0;
+bottom:0;
+width:100%;
+height: 2px;
+background:#09a12a  ;
+transform: scaleX(0);
+transform-origin:right ;
+transition: transform 250ms ease-in;
+
+}
+.navhovers:hover:after{
+ transform: scaleX(1);
+ transform-origin:left ;
+}
+
+.text-brands{
+ font-size: 30px;
+ color:rgb(2, 2, 2);
 }

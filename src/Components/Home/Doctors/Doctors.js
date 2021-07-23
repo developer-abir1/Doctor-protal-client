@@ -14,17 +14,17 @@ const Doctors = () => {
     }, [])
 
     return (
-        <section className="doctors">
+        <section className="">
             <div className="container">
-                <h5 className="text-center  text-brand mb-5">Our Doctors</h5>
-                <div className="row">
+                <h5 className="text-center  text-brand mb-5" >Our Doctors</h5>
+                <div className="row" >
                     {
 
                         doctor.map(doctors => <Doctor doctors={doctors}></Doctor>)
                     }
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 

@@ -9,7 +9,7 @@ const AppointmentHeader = ({handleDateChange}) => {
         <main style={{height:"600px"}} className="row d-flex align-items-center ">
             <div className="col-md-4 offset-md-1 ">
                 <h2 className="text-brand mb-5 ">Appointment</h2>
-            <Calendar
+            <Calendar className="Calendar"
               onChange={handleDateChange}
                 value={new Date()}
              />

@@ -29,9 +29,9 @@ const Login = () => {
     success: false,
     newUser: false
   })
- 
+
   const [loggedIndUser, setLoggedIndUser] = useContext(UserContext);
-  
+
   const history = useHistory();
   const location = useLocation();
 
@@ -44,13 +44,16 @@ const Login = () => {
       .then(res => {
         setLoggedIndUser(res)
         setUser(res)
-      
+        storeAuthToken()
         history.replace(from);
-    })
+      
+       
+        
+      })
   }
 
 
-  
+
 
   const handleBlur = (e) => {
 
@@ -78,33 +81,33 @@ const Login = () => {
   const handleSubmit = (e) => {
 
     if (user.email && user.password) {
-      handleCreactUser( user.email, user.password)
-      .then(res => {
-        setUser(res)
-        setLoggedIndUser(res)
-        history.replace(from);
-        
-      })
+      handleCreactUser(user.email, user.password)
+        .then(res => {
+          setUser(res)
+          setLoggedIndUser(res)
+          history.replace(from)
+          sessionStorage.setItem(loggedIndUser)
+
+        })
     };
 
-    if (!newUser && user.email && user.password) {  
+    if (!newUser && user.email && user.password) {
       handleSingInUsers(user.email, user.password)
-      .then(res => {
-        setUser(res)
-        setLoggedIndUser(res)
-       
-        history.replace(from);
-    })
+        .then(res => {
+          setUser(res)
+          setLoggedIndUser(res)
+
+          history.replace(from);
+        })
 
     }
     e.preventDefault();
   }
 
-  
-
 
   return (
     <div className='loginFrom container'>
+
       <div className='row'>
         <div className='col-md-6 mt-5 pt-5'>
           <form onSubmit={handleSubmit}>
@@ -122,7 +125,7 @@ const Login = () => {
                 required
               />
             </div>}
-            
+
 
 
             <div className='form-group'>
@@ -167,18 +170,17 @@ const Login = () => {
             <p className='loginWith'> OR </p>
             <br />
             <br />
-             <button className='login-provider w-100' onClick={googleSingIn}>Login with Google <img src={google} alt="" width="40px" srcset="" /></button>
+            <button className='login-provider w-100' onClick={googleSingIn}>Login with Google <img src={google} alt="" width="40px" srcset="" /></button>
 
-            
+
           </div>
         </div>
         <div className='col-md-6 mt-5 pt-5'>
           <img src={loginBg} className='img-fluid' alt='' srcset='' />
         </div>
       </div>
-     
-    </div>
-  )
+      </div>
+      )
 }
 
-export default Login
+      export default Login

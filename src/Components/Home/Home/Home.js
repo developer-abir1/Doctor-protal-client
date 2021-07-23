@@ -14,20 +14,22 @@ import Testimonials from '../Testimonials/Testimonials';
 const Home = () => {
     document.title = 'Docotr Protal';
 
-    const [loggedIndUser, setLoggedIndUser] = useContext(UserContext)
+
     return (
         <div>
-          
+
             <Header></Header>
             <Services></Services>
             <FeaturedService></FeaturedService>
+
             <MakeAppoinment></MakeAppoinment>
             <Testimonials></Testimonials>
+
             <Blogs></Blogs>
             <Doctors></Doctors>
             <Contact></Contact>
             <Footer></Footer>
-          
+
         </div>
     );
 };

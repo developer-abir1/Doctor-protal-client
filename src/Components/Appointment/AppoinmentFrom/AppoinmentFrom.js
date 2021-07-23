@@ -36,7 +36,7 @@ const AppoinmentFrom = ({
     data.service = apponimentOn;
     data.date = date;
     data.creact = new Date();
-     
+
     fetch('https://whispering-sands-28148.herokuapp.com/addAppointment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -47,10 +47,10 @@ const AppoinmentFrom = ({
         if (success) {
           closeModal();
           alert('Thanks for creacting  successfully')
-      }
-    } )
+        }
+      })
 
-   
+
 
   };
 

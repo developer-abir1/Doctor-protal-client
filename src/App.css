@@ -1,5 +1,5 @@
 .btn-brand{
-    background-image:linear-gradient(#4FDCE8,#17D2BE) ;
+    background-image:linear-gradient(#6dcf46,#24a00c) ;
     border: none;
     padding: 10px 35px;
     color:white;
@@ -8,13 +8,14 @@
     border-color: transparent;
 
 }
-.btn-brand:hover{
-    background:rgb(15, 63, 65);
-    color: #4FDCE8;
-}
 .text-brand{
-    color:#4FDCE8;
+    color:#118a17;
 }
 .text-font{
     color: #3D4457;
+}
+.doctors{
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.534);
+    border-radius: 5px;
+    
 }
